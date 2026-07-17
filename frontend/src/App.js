@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import About from './components/About';
 import Upload from './components/Upload';
-import VAPITeacher from './components/VAPITeacher';
+import VoiceTutor from './components/VoiceTutor';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -36,7 +36,7 @@ function AppContent() {
           <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="/about" element={<About />} />
           <Route path="/upload" element={user ? <Upload /> : <Navigate to="/login" />} />
-          <Route path="/voice" element={user ? <VAPITeacher /> : <Navigate to="/login" />} />
+          <Route path="/voice" element={user ? <VoiceTutor /> : <Navigate to="/login" />} />
         </Routes>
       </main>
       <Footer />

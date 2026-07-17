@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FiUsers, FiFileText, FiPhone, FiBarChart2, FiUpload } from 'react-icons/fi';
+import { FiUsers, FiFileText, FiMic, FiBarChart2, FiUpload } from 'react-icons/fi';
 import { useAuth } from '../contexts/AuthContext';
 import './Dashboard.css';
 
@@ -69,9 +69,9 @@ function Dashboard() {
       color: 'primary'
     },
     {
-      title: 'AI Phone Tutoring',
-      description: 'Set up AI phone calls for student learning',
-      icon: FiPhone,
+      title: 'AI Voice Tutor',
+      description: 'Start an in-browser AI voice tutoring session for student learning',
+      icon: FiMic,
       link: '/voice',
       color: 'secondary'
     }
@@ -114,7 +114,7 @@ function Dashboard() {
             
             <div className="stat-card">
               <div className="stat-icon">
-                <FiPhone />
+                <FiMic />
               </div>
               <div className="stat-content">
                 <div className="stat-number">{stats.totalCalls}</div>
@@ -170,7 +170,7 @@ function Dashboard() {
               <div key={activity.id} className="activity-item">
                 <div className={`activity-icon ${activity.type}`}>
                   {activity.type === 'upload' ? <FiUpload /> : 
-                   activity.type === 'call' ? <FiPhone /> : 
+                   activity.type === 'call' ? <FiMic /> : 
                    activity.type === 'assignment' ? <FiFileText /> : <FiBookOpen />}
                 </div>
                 <div className="activity-content">

@@ -1,4 +1,4 @@
-.vapi-teacher-container {
+.voice-tutor-container {
   min-height: 100vh;
   background: var(--gradient-hero);
   padding: 2rem 0;
@@ -48,23 +48,6 @@
   margin-bottom: 1rem;
   font-size: 1.2rem;
   font-weight: 600;
-}
-
-.phone-input {
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid hsl(var(--input));
-  border-radius: var(--radius);
-  font-size: 1.1rem;
-  background: hsl(var(--card));
-  color: hsl(var(--foreground));
-  transition: var(--transition-smooth);
-}
-
-.phone-input:focus {
-  outline: none;
-  border-color: hsl(var(--primary));
-  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
 }
 
 .help-text {
@@ -197,6 +180,58 @@
   color: hsl(var(--muted-foreground));
   font-size: 1.1rem;
   line-height: 1.6;
+}
+
+.listening-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  margin: 1rem auto;
+  max-width: fit-content;
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  border: 1px solid hsl(var(--border));
+}
+
+.listening-indicator.active {
+  background: hsl(var(--success) / 0.1);
+  color: hsl(var(--success));
+  border-color: hsl(var(--success) / 0.2);
+}
+
+.listening-indicator.active .status-icon {
+  animation: pulse 1s infinite;
+}
+
+.transcript-preview {
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+  min-height: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.current-question {
+  background: hsl(var(--muted));
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.5rem;
+  border: 1px solid hsl(var(--border));
+}
+
+.current-question h4 {
+  color: hsl(var(--foreground));
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.current-question p {
+  color: hsl(var(--muted-foreground));
+  font-size: 1.1rem;
 }
 
 .call-details {

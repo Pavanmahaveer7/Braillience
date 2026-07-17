@@ -3,7 +3,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/API-Express-000000?logo=express&logoColor=white)
-![VAPI](https://img.shields.io/badge/Voice-VAPI-purple)
+![Web Speech API](https://img.shields.io/badge/Voice-Web_Speech_API-purple)
 ![Letta](https://img.shields.io/badge/AI-Letta-1E90FF?logo=openai&logoColor=white)
 ![Gemini](https://img.shields.io/badge/AI-Google_Gemini-4285F4?logo=google&logoColor=white)
 ![Claude](https://img.shields.io/badge/AI-Claude_Sonnet_3.5-FFD700?logo=anthropic&logoColor=black)
@@ -28,13 +28,13 @@ How can we create a fully voice-driven, accessible learning experience that allo
 ## 💡 Our Solution
 
 **Braillience** is an **accessible learning platform** designed specifically for blind and visually impaired learners.  
-It enables teachers to upload PDFs, automatically generate flashcards using AI, and study completely via voice commands — no mouse or screen required. Students will receive a phone call and will converse with an AI agent.
+It enables teachers to upload PDFs, automatically generate flashcards using AI, and study completely via voice commands — no mouse or screen required. Students start an in-browser voice session and converse with an AI tutor using their microphone and speakers.
 
 **Key Innovations:**
 
 - 🎙️ **Voice-First Learning Interface:** Fully voice-controlled navigation for flashcards, tests, and progress tracking.  
 - 🧠 **AI-Generated Flashcards:** Letta Agents analyze uploaded PDFs to create structured study sets automatically.  
-- 🗣️ **Seamless Voice Processing:** VAPI handles speech recognition and synthesis for real-time, natural voice interactions.  
+- 🗣️ **Seamless Voice Processing:** The browser's built-in Web Speech API handles speech recognition and synthesis for real-time, natural voice interactions, at no per-minute cost.  
 
 Result: A **hands-free, inclusive learning experience** that empowers blind students to study independently.
 
@@ -48,12 +48,10 @@ Braillience/
 │   │   │   ├── auth.js     # Authentication
 │   │   │   ├── upload.js   # PDF upload & processing
 │   │   │   ├── flashcards.js # Flashcard management
-│   │   │   ├── learning.js  # Learning sessions
-│   │   │   ├── test.js      # Testing endpoints
-│   │   │   └── voice.js     # Voice services
+│   │   │   └── voice-learning.js # Browser-based voice tutoring sessions
 │   │   ├── services/       # Business logic
 │   │   │   ├── aiService.js # AI flashcard generation
-│   │   │   └── voiceService.js # Voice processing
+│   │   │   └── voiceSessionService.js # Voice session logic & answer grading
 │   │   └── server.js       # Express server
 │   ├── package.json
 │   └── env.example
@@ -61,22 +59,16 @@ Braillience/
 │   ├── src/
 │   │   ├── components/    # React components
 │   │   │   ├── Dashboard.js/css    # Main dashboard
-│   │   │   ├── Learn.js/css        # Learning interface
-│   │   │   ├── Test.js/css         # Testing interface
+│   │   │   ├── VoiceTutor.js/css   # In-browser AI voice tutoring session
 │   │   │   ├── Login.js/css        # Authentication
 │   │   │   ├── Header.js/css       # Navigation header
 │   │   │   └── Footer.js/css       # Footer
 │   │   ├── contexts/      # React contexts
 │   │   │   └── AuthContext.js
 │   │   ├── hooks/         # Custom hooks
-│   │   │   └── useVoiceCommands.ts
-│   │   ├── types/         # TypeScript types
-│   │   │   └── voice.ts
+│   │   │   └── useVoiceCommands.js # Web Speech API recognition hook
 │   │   ├── App.js/css     # Main app component
-│   │   ├── index.js/css   # App entry point
-│   │   └── components/voice/ # Voice components
-│   │       ├── VoiceProvider.tsx
-│   │       └── VoiceInterface.tsx
+│   │   └── index.js/css   # App entry point
 │   ├── public/            # Static assets
 │   │   ├── index.html
 │   │   └── manifest.json
@@ -104,7 +96,7 @@ Braillience/
 - **Letta Agents** — AI content generation  
 
 ### Voice & AI
-- **VAPI** — Real-time speech recognition and synthesis  
+- **Web Speech API** — In-browser speech recognition and synthesis, free  
 - **Letta File + Agent** — Stateful learning assistance  
 - **Gemini AI** — Enhanced semantic understanding  
 - **Claude Sonnet 3.5** - AI automation and structured calling

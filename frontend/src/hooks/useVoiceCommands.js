@@ -13,6 +13,7 @@ export const useVoiceCommands = ({
   const [isEnabled, setIsEnabled] = useState(true); // Control continuous listening
   const recognitionRef = useRef(null);
   const restartTimeoutRef = useRef(null);
+  const isEnabledRef = useRef(true); // Mirrors isEnabled without the stale-closure risk in onend
   const isSupported = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -65,11 +66,14 @@ export const useVoiceCommands = ({
 
       recognition.onend = () => {
         setIsListening(false);
-        
-        // Auto-restart if enabled and not manually stopped
-        if (autoRestart && isEnabled) {
+
+        // Auto-restart if enabled and not manually stopped.
+        // Reads isEnabledRef (not the isEnabled state) because this closure
+        // was created when startListening() was called and would otherwise
+        // never see a later setIsEnabled(false) from disableContinuousListening.
+        if (autoRestart && isEnabledRef.current) {
           restartTimeoutRef.current = setTimeout(() => {
-            if (isEnabled) {
+            if (isEnabledRef.current) {
               console.log('🔄 Auto-restarting voice recognition...');
               startListening();
             }
@@ -98,12 +102,14 @@ export const useVoiceCommands = ({
   }, []);
 
   const disableContinuousListening = useCallback(() => {
+    isEnabledRef.current = false;
     setIsEnabled(false);
     stopListening();
     console.log('🛑 Continuous voice listening disabled');
   }, [stopListening]);
 
   const enableContinuousListening = useCallback(() => {
+    isEnabledRef.current = true;
     setIsEnabled(true);
     console.log('🎤 Continuous voice listening enabled');
     startListening();
